@@ -1,0 +1,10 @@
+$theme-colors: (
+    "doré": #FFFAE9,
+    "dark-grey": #2B2B2B,
+);
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+body{
+    background-color: white;
+}
