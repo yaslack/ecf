@@ -12,28 +12,38 @@ body{
 
 
 h1{
+    text-align: center;
+    padding: 2vh;
     color: #D8991F;
+    font-family: 'Kiwi Maru';
 }
 
-.carousel {
-    &__img {
-      width: 100vw;
-      height: 50vh;
-      object-fit: cover;
-    }
+
+
+
+.carousel-item > img{
+    width: 100vw;
+    height: 50vh;
+    object-fit: cover;
+}
+
+
+.carousel-control-prev-icon { 
     
-    &__caption {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-  
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-    }
-  }
-  
+    background-image:url("../assets/ControlArrowLeft.png"); 
+    width: 30px;
+    height: 48px;
+
+    
+}
+.carousel-control-next-icon { 
+    background-image:url("../assets/ControlArrowLeft.png");
+    transform: rotate(180deg);
+    width: 30px;
+    height: 48px;
+}
+
+
 
 a {
     color: white;

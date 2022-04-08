@@ -11213,30 +11213,31 @@ body {
 }
 
 h1, .h1 {
+  text-align: center;
+  padding: 2vh;
   color: #D8991F;
+  font-family: 'Kiwi Maru';
 }
 
-.carousel__img {
+.carousel-item > img {
   width: 100vw;
   height: 50vh;
   -o-object-fit: cover;
      object-fit: cover;
 }
 
-.carousel__caption {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
+.carousel-control-prev-icon {
+  background-image: url("../assets/ControlArrowLeft.png");
+  width: 30px;
+  height: 48px;
+}
+
+.carousel-control-next-icon {
+  background-image: url("../assets/ControlArrowLeft.png");
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+  width: 30px;
+  height: 48px;
 }
 
 a {
