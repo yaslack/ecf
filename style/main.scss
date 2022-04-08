@@ -1,10 +1,53 @@
 $theme-colors: (
-    "doré": #FFFAE9,
+    "doré": #FFFAE9, 
     "dark-grey": #2B2B2B,
 );
 
 @import "../node_modules/bootstrap/scss/bootstrap";
 
+
 body{
     background-color: white;
+}
+
+
+h1{
+    color: #D8991F;
+}
+
+.carousel {
+    &__img {
+      width: 100vw;
+      height: 50vh;
+      object-fit: cover;
+    }
+    
+    &__caption {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+  }
+  
+
+a {
+    color: white;
+    background-color: transparent;
+    text-decoration: none;
+  }
+
+a:hover{
+    color: rgb(224, 172, 0);
+}
+
+.contact-links{
+    color: rgb(227, 177, 0);
+}
+.contact-links:hover{
+    color: rgb(126, 86, 0); 
 }
