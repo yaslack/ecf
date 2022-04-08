@@ -6,9 +6,59 @@ $theme-colors: (
 @import "../node_modules/bootstrap/scss/bootstrap";
 
 
+
+
+#navbar{
+    z-index: 1;
+    #btnCollapse:hover{
+        background-color: rgb(168, 104, 0);
+    }
+    #bookNow{
+        padding: 10px;
+        background-color: white;
+        border-style: solid;
+        border-color: black;
+    }
+    #bookNow:hover{
+        color: rgb(168, 104, 0);
+        border-color: rgb(122, 75, 0);
+    }
+}
+#navbar2{
+
+    background-color: #2B2B2B;
+    height: 100%;
+    padding: 0;
+    position: fixed;
+    left: 0;
+    right: 60%;
+    top: 0;
+    z-index: 2;
+    li{
+        padding: 20px;
+    }
+    a{
+        color: blanchedalmond;
+    }
+    #crossCollapse:hover{
+        fill: rgb(168, 104, 0);
+    }
+    a:hover{
+        color: rgb(168, 104, 0);
+    }
+    
+
+}
+
+#mycarousel{
+    z-index: 0;
+}
+
+
 body{
     background-color: white;
 }
+
 
 
 h1{
@@ -33,7 +83,7 @@ h1{
     background-image:url("../assets/ControlArrowLeft.png"); 
     width: 30px;
     height: 48px;
-
+    
     
 }
 .carousel-control-next-icon { 
@@ -49,7 +99,7 @@ a {
     color: white;
     background-color: transparent;
     text-decoration: none;
-  }
+}
 
 a:hover{
     color: rgb(224, 172, 0);

@@ -11208,6 +11208,57 @@ fieldset:disabled .btn {
   }
 }
 
+#navbar {
+  z-index: 1;
+}
+
+#navbar #btnCollapse:hover {
+  background-color: #a86800;
+}
+
+#navbar #bookNow {
+  padding: 10px;
+  background-color: white;
+  border-style: solid;
+  border-color: black;
+}
+
+#navbar #bookNow:hover {
+  color: #a86800;
+  border-color: #7a4b00;
+}
+
+#navbar2 {
+  background-color: #2B2B2B;
+  height: 100%;
+  padding: 0;
+  position: fixed;
+  left: 0;
+  right: 60%;
+  top: 0;
+  z-index: 2;
+}
+
+#navbar2 li {
+  padding: 20px;
+}
+
+#navbar2 a {
+  color: blanchedalmond;
+}
+
+#navbar2 #crossCollapse:hover {
+  fill: #a86800;
+}
+
+#navbar2 a:hover {
+  color: #a86800;
+}
+
+#mycarousel {
+  z-index: 0;
+}
+
 body {
   background-color: white;
 }
