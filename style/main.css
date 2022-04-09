@@ -11259,6 +11259,15 @@ fieldset:disabled .btn {
   z-index: 0;
 }
 
+#infoHotel {
+  margin-top: 50px;
+}
+
+#infoHotel p {
+  word-wrap: break-word;
+  width: 250px;
+}
+
 body {
   background-color: white;
 }

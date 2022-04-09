@@ -67,15 +67,11 @@
 
     <div id="mycarousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
-        <div class="carousel-item active img-fluid">
-          <img src="../assets/hotels/briard/facade/briard.jpg" class="d-block w-100" >
-        </div>
-        <div class="carousel-item">
-          <img src="../assets/hotels/francesca/facade/francesca.jpg" class="d-block w-100" >
-        </div>
-        <div class="carousel-item">
-          <img src="../assets/hotels/joshua/facade/joshua.jpg" class="d-block w-100" >
-        </div>
+        <?php
+          require_once('Controller.php');
+          firstCarousel();
+          restCarousel();
+        ?>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#mycarousel" data-bs-slide="prev">
         <span class="carousel-control-prev-icon " aria-hidden="true"></span>
@@ -88,10 +84,20 @@
     </div>
 
 
-
-
-
-    
+    <div id="infoHotel" class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 pull-right">
+        <img src='https://wallpaperaccess.com/full/11729.jpg'
+          class="img-fluid">
+        </div>
+        <div class="col-xs-12 col-sm-6 pull-left">
+          <p>LOREMFKSLMKFSLSQFLLLLLLLLLLLLLLL
+            ddksqkndldlsqdsdkdsq
+            sdklqssssssssssss
+          </p>
+        </div>
+      </div>
+    </div>
 
 
   </main>
