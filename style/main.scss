@@ -34,6 +34,7 @@ $theme-colors: (
     right: 60%;
     top: 0;
     z-index: 2;
+    transition: height 0.5s ease;
     li{
         padding: 20px;
     }
