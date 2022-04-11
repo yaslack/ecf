@@ -11237,6 +11237,8 @@ fieldset:disabled .btn {
   right: 60%;
   top: 0;
   z-index: 2;
+  -webkit-transition: all 0.6s ease-out;
+  transition: all 0.6s ease-out;
 }
 
 #navbar2 li {
@@ -11265,7 +11267,7 @@ fieldset:disabled .btn {
 
 #infoHotel p {
   word-wrap: break-word;
-  width: 250px;
+  width: 100%;
 }
 
 body {
