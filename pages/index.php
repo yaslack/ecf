@@ -16,7 +16,7 @@
     <!-- Just an image -->
   <nav id="navbar" class="navbar navbar-light fixed-top bg-doré" >
     
-    <button id="btnCollapse" class="navbar-toggler m-md-5" type="button" data-bs-toggle="collapse" data-bs-target="#navbar2" aria-expanded="false" aria-label="Toggle navigation">
+    <button id="btnCollapse" class="navbar-toggler m-md-5" type="button" data-bs-toggle="collapse" data-bs-target="#navbar2" aria-expanded="false" aria-controls="navbar2">
       <span class="navbar-toggler-icon"></span>
     </button>
   <div class="navbar-item mx-auto" href="#">
@@ -29,7 +29,7 @@
     <div id="navbar2" class="navbar-collapse collapse fixed-left text-center">
       <ul id="main-menu" class="navbar-nav">
         <li class="nav-item text-start">
-          <a href="#" class="nav-link" type="button" data-bs-toggle="collapse" data-bs-target="#navbar2">
+          <a href="#" class="nav-link" type="button" data-bs-toggle="collapse" data-bs-target="#navbar2" aria-expanded="false" aria-controls="navbar2">
             <svg id ="crossCollapse" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
               <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
               <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>

@@ -35,11 +35,15 @@ $theme-colors: (
     right: 60%;
     top: 0;
     z-index: 2;
+<<<<<<< HEAD
     -webkit-transition: all 0.6s ease-out;
     -moz-transition: all 0.6s ease-out;
     -o-transition: all 0.6s ease-out;
     -ms-transition: all 0.6s ease-out;
     transition: all 0.6s ease-out;
+=======
+    transition: height 0.5s ease;
+>>>>>>> 1b278f05f92ec3243157d02df60fbf7bf40a6256
     li{
         padding: 20px;
     }
