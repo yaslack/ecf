@@ -60,7 +60,7 @@
     <div id="mycarousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <?php
-          //require_once('pages/php/Controller.php');
+          require_once('pages/php/Controller.php');
           //firstCarousel();
           //restCarousel();
         ?>
