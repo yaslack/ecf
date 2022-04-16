@@ -21,7 +21,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
   <div class="navbar-item mx-auto" href="#">
-    <img src="../assets/Logo.PNG" width="100" height="100" alt="">
+    <img src="assets/Logo.PNG" width="100" height="100" alt="">
   </div>
   <a id="bookNow" class="navbar-brand   m-md-5" href="book.php">Book Now</a>
   </nav
@@ -103,7 +103,7 @@
   >
     <!-- Left -->
     <div class="mx-auto" href="#">
-      <img src="../assets/Logo.PNG" width="75" height="75" alt="">
+      <img src="assets/Logo.PNG" width="75" height="75" alt="">
     </div>
 
   </section>
