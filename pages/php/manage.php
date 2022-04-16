@@ -42,10 +42,10 @@ function navbar2Options(){
     if($FName == "" && $LName == ""){
         echo('
         <li class="nav-item">
-            <a href="LoginRegister.php" class="nav-link">pages/Login/Register</a>
+            <a href="pages/LoginRegister.php" class="nav-link">Login/Register</a>
         </li>
         <li class="nav-item">
-            <a href="Contact.php" class="nav-link">pages/Contact us</a>
+            <a href="pages/Contact.php" class="nav-link">Contact us</a>
         </li>
         ');
     }
@@ -55,10 +55,10 @@ function navbar2Options(){
             <p>'.'Hi '.$FName.' '.$LName.'</p>
         </li>
         <li class="nav-item">
-            <a href="Contact.php" class="nav-link">Contact us</a>
+            <a href="pages/Contact.php" class="nav-link">Contact us</a>
         </li>
         <li class="nav-item">
-            <a href="Logout.php" class="nav-link">Logout</a>
+            <a href="pages/Logout.php" class="nav-link">Logout</a>
         </li>
         ');
     }
