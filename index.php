@@ -61,7 +61,7 @@
       <div class="carousel-inner">
         <?php
           require_once('pages/php/Controller.php');
-          //firstCarousel();
+          firstCarousel();
           //restCarousel();
         ?>
       </div>
