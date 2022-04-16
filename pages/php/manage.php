@@ -11,7 +11,7 @@ function firstCarousel(){
     $manager = GetManagers();
     echo'
     <div class="carousel-item active img-fluid">
-        <img src="../assets/hotels/'.$manager[0].'/facade/'.$manager[0].'.jpg" class="d-block w-100" >
+        <img src="assets/hotels/'.$manager[0].'/facade/'.$manager[0].'.jpg" class="d-block w-100" >
     </div>
     ';
 }
@@ -23,7 +23,7 @@ function restCarousel(){
     for($i=1; $i<=$numberHotels-1; $i++){
     echo '
     <div class="carousel-item">
-        <img src="../assets/hotels/'.$manager[$i].'/facade/'.$manager[$i].'.jpg" class="d-block w-100" >
+        <img src="assets/hotels/'.$manager[$i].'/facade/'.$manager[$i].'.jpg" class="d-block w-100" >
     </div>
     ';
     }
