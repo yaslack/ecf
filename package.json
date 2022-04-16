@@ -4,7 +4,7 @@
   "description": "Hotel Sample",
   "main": "index.js",
   "scripts": {
-    "run": "index.php"
+    "run": "index.js"
   },
   "author": "",
   "license": "ISC",
