@@ -7,8 +7,6 @@
   },
   "description": "Hotel Sample",
   "main": "index.js",
-  "scripts": {
-  },
   "author": "",
   "license": "ISC",
   "dependencies": {
