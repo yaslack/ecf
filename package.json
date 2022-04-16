@@ -4,7 +4,6 @@
   "description": "Hotel Sample",
   "main": "index.js",
   "scripts": {
-    "run": "index.js"
   },
   "author": "",
   "license": "ISC",
