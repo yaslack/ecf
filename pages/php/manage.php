@@ -42,10 +42,10 @@ function navbar2Options(){
     if($FName == "" && $LName == ""){
         echo('
         <li class="nav-item">
-            <a href="LoginRegister.php" class="nav-link">Login/Register</a>
+            <a href="LoginRegister.php" class="nav-link">pages/Login/Register</a>
         </li>
         <li class="nav-item">
-            <a href="Contact.php" class="nav-link">Contact us</a>
+            <a href="Contact.php" class="nav-link">pages/Contact us</a>
         </li>
         ');
     }
