@@ -1,6 +1,10 @@
 {
   "name": "ecf",
   "version": "1.0.0",
+  "engines": {
+    "npm": "8.5.0",
+    "node": "16.14.2"
+  },
   "description": "Hotel Sample",
   "main": "index.js",
   "scripts": {
