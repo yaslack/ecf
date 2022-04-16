@@ -23,7 +23,6 @@
   <div class="navbar-item mx-auto" href="#">
     <img src="../assets/Logo.PNG" width="100" height="100" alt="">
   </div>
-  <a id="bookNow" class="navbar-brand   m-md-5" href="book.php">Book Now</a>
   </nav
 
   <nav>
@@ -37,11 +36,12 @@
             </svg>
           </a>
         </li>
-        <?php
-          require_once('php/Controller.php');
-          navbar2Options();
-
-        ?>
+        <li class="nav-item">
+          <a href="LoginRegister.php" class="nav-link">Login/Register</a>
+        </li>
+        <li class="nav-item">
+          <a href="Contact.php" class="nav-link">Contact us</a>
+        </li>
       </ul>
     </div>
   </nav>
@@ -51,46 +51,82 @@
   <main>
     <div>
       <h1 >
-        Discover Our 7 Hotels
+        Admin
       </h1>
     </div>
     
-    
-
-    <div id="mycarousel" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
+    <div class="justify-content-center input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect01">Chose Hotel</label>
+      </div>
+      <select class="custom-select" id="inputSelect1">
+        <option selected>New +</option>
+        <option selected>Choose...</option>
         <?php
           require_once('php/Controller.php');
-          firstCarousel();
-          restCarousel();
+          AdminHotelsChose();
         ?>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#mycarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon " aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#mycarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+      </select>
     </div>
 
-
-    <div id="infoHotel" class="container-fluid">
-      <div class="row">
-        <div class="col-xs-12 col-sm-6 pull-right">
-        <img src='https://wallpaperaccess.com/full/11729.jpg'
-          class="img-fluid">
+    <form id="AdminForm">
+      <div class="form-group">
+        <div class="col-xs-6 col-xs-offset-3 text-center" style="margin-bottom: 10px;">
+          <label for="formGroupExampleInput">Name</label>
+          <input type="text" class="form-control" id="AdminInputName" placeholder="Name" required>
         </div>
-        <div class="col-xs-12 col-sm-6 pull-left text-center">
-          <p>LOREMFKSLMKFSLSQFLLLLLLLLLLLLLLL
-            ddksqkndldlsqdsdkdsq
-            sdklqssssssssssssdddddddddddddddddddddddddddddddddddddddddddddddd
-          </p>
+        <div class="col-xs-6 col-xs-offset-3 text-center" style="margin-bottom: 10px;">
+          <label for="formGroupExampleInput">City</label>
+          <input type="text" class="form-control" id="AdminInputCity" placeholder="City" required>
+        </div>
+        <div class="col-xs-6 col-xs-offset-3 text-center" style="margin-bottom: 10px;">
+          <label for="formGroupExampleInput">Adress</label>
+          <input type="text" class="form-control" id="AdminInputAdress" placeholder="Adress" required>
+        </div>
+        <div class="col-xs-6 col-xs-offset-3 text-center" style="margin-bottom: 10px;">
+          <label for="formGroupExampleInput">Description</label>
+          <textarea type="text" class="form-control" id="AdminInputDescription" placeholder="Description" required></textarea>
+        </div>
+        <div class="col-xs-6 col-xs-offset-3 text-center" style="margin-bottom: 10px;">
+          <label for="formGroupExampleInput">Manager LastName</label>
+          <input type="text" class="form-control" id="AdminInputLastName" placeholder="Last Name" required>
+        </div>
+        <div class="col-xs-6 col-xs-offset-3 text-center" style="margin-bottom: 10px;">
+          <label for="formGroupExampleInput">Manager FirstName</label>
+          <input type="text" class="form-control" id="AdminInputFirstName" placeholder="First Name" required>
+        </div>
+        <div class="col-xs-6 col-xs-offset-3 text-center" style="margin-bottom: 10px;">
+          <label for="formGroupExampleInput">Manager mail</label>
+          <input type="email" class="form-control" id="AdminInputEmail" aria-describedby="emailHelp" placeholder="Email" required>
+        </div>
+        <div class="col-xs-6 col-xs-offset-3 text-center" style="margin-bottom: 10px;">
+          <label for="formGroupExampleInput">Manager Hash password </label>
+          <input type="text" class="form-control" id="AdminInputHash" placeholder="Hash" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
         </div>
       </div>
+    </form>
+    
+    <div class="text-center">
+      <button id="AdminBtnUpdate" type="button" onclick="UpdateInfo()"  class="btn btn-dark-grey">Update</button>
+      <button id="AdminBtnDelete" type="button" onclick="DeleteInfo()" class="btn btn-dark-grey">Delete</button>
+      <button id="AdminBtnCreate" type="button" onclick="CreateInfo()" class="btn btn-dark-grey">Create</button>
     </div>
 
+    <div id="AdminModal" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Error</h5>
+              </div>
+              <div class="modal-body">
+                      <p> </p>
+                  </div>
+              <div class="modal-footer">
+              <button id="closeModalButton" type="button" class="btn btn-dark-grey" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+      </div>
 
   </main>
   

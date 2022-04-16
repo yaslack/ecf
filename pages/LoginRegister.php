@@ -37,59 +37,91 @@
             </svg>
           </a>
         </li>
-        <?php
-          require_once('php/Controller.php');
-          navbar2Options();
-
-        ?>
+        <li class="nav-item">
+          <a href="index.php" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item">
+          <a href="Contact.php" class="nav-link">Contact us</a>
+        </li>
       </ul>
     </div>
   </nav>
+  
+  
+  
+  <div class="side">
 
+  </div>
+
+
+  
   </header>
 
   <main>
     <div>
       <h1 >
-        Discover Our 7 Hotels
+        Login / Register
       </h1>
     </div>
     
     
-
-    <div id="mycarousel" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <?php
-          require_once('php/Controller.php');
-          firstCarousel();
-          restCarousel();
-        ?>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#mycarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon " aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#mycarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
+    <div class="container">
+        <form id="loginForm" action="php/process-form.php" name="loginForm" method="post">
+            <h2 class="text-center">Login</h2>
+            <div class="form-group">
+                <label for="emailogin">Email address</label>
+                <input name="emailogin" type="email" class="form-control" id="emailogin" aria-describedby="emailHelp" placeholder="Enter email" required>
+            </div>
+            <div class="form-group">
+                <label for="passwordlogin">Password</label>
+                <input name="passwordlogin" type="password" class="form-control" id="passwordlogin" placeholder="Password" required>
+            </div>
+            <button id="submitLogin" type="submit" onclick="return validateLogin()" name="Login" style="margin-top:10px; margin-bottom:10px;" class="btn btn-dark-grey">Login</button>
+        </form>
     </div>
-
-
-    <div id="infoHotel" class="container-fluid">
-      <div class="row">
-        <div class="col-xs-12 col-sm-6 pull-right">
-        <img src='https://wallpaperaccess.com/full/11729.jpg'
-          class="img-fluid">
-        </div>
-        <div class="col-xs-12 col-sm-6 pull-left text-center">
-          <p>LOREMFKSLMKFSLSQFLLLLLLLLLLLLLLL
-            ddksqkndldlsqdsdkdsq
-            sdklqssssssssssssdddddddddddddddddddddddddddddddddddddddddddddddd
-          </p>
-        </div>
+    <!-- Modal -->
+    <div id="Modal" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Error</h5>
+              </div>
+              <div class="modal-body">
+                      <p> </p>
+                  </div>
+              <div class="modal-footer">
+              <button id="closeModalButton" type="button" class="btn btn-dark-grey" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
       </div>
     </div>
+
+
+    
+    <div class="container">
+        <form id="registerForm" action="php/process-form.php" name="registerForm" method="post">
+            <h2 class="text-center">Register</h2>
+            <div class="form-group">
+                <label for="FirstName">First name</label>
+                <input name="FirstName" type="text" class="form-control" placeholder="First name" required>
+            </div>
+            <div class="form-group">
+                <label for="LastName">Last name</label>
+                <input name="LastName" type="text" class="form-control" placeholder="Last name" required>
+            </div>
+            <div class="form-group">
+                <label for="emailregister">Email address</label>
+                <input name="emailregister" type="email" class="form-control" id="emailregister" aria-describedby="emailHelp" placeholder="Enter email" required>
+            </div>
+            <div class="form-group">
+                <label for="passwordregister">Password</label>
+                <input name="passwordregister" type="password" class="form-control" id="passwordregister" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
+                title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+                <small id="emailHelp" class="form-text text-muted">At least one number and one uppercase and lowercase letter, and at least 8 or more characters</small>
+            </div>
+            <button id="submitRegister" type="submit" onclick="return  validateRegister()" name="Register" style="margin-top:10px; margin-bottom:10px;" class="btn btn-dark-grey">Create Account</button>
+        </form>
+      </div>
 
 
   </main>
@@ -174,7 +206,7 @@
 
 
 <script src="../js/index.js"></script>
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
  integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"

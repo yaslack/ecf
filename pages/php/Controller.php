@@ -1,13 +1,9 @@
 <?php
 
+require_once 'Client.php';
 require_once 'manage.php';
 require_once 'dbConnect.php';
 require_once 'dbActions.php';
-
-echo "<br>";
-test();
-
-
-
+require_once 'process-form.php';
 
 ?>
