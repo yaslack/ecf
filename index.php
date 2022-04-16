@@ -62,7 +62,7 @@
         <?php
           require_once('pages/php/Controller.php');
           firstCarousel();
-          //restCarousel();
+          restCarousel();
         ?>
       </div>
       <button class="carousel-control-prev" type="button" data-bs-target="#mycarousel" data-bs-slide="prev">
