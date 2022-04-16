@@ -38,7 +38,7 @@
           </a>
         </li>
         <?php
-          require_once('php/Controller.php');
+          require_once('pages/php/Controller.php');
           navbar2Options();
 
         ?>
@@ -60,7 +60,7 @@
     <div id="mycarousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <?php
-          require_once('php/Controller.php');
+          require_once('pages/php/Controller.php');
           firstCarousel();
           restCarousel();
         ?>
@@ -173,7 +173,7 @@
 <!-- Footer -->
 
 
-<script src="../js/index.js"></script>
+<script src="js/index.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
  integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
