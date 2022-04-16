@@ -37,6 +37,9 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="../index.php" class="nav-link">Home</a>
+        </li>
+        <li class="nav-item">
           <a href="LoginRegister.php" class="nav-link">Login/Register</a>
         </li>
         <li class="nav-item">
