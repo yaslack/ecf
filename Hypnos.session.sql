@@ -11,10 +11,32 @@ create table ACCOUNT
 select * From hotels
 select * From account
 
-alter TABLE hotels
-DROP COLUMN number
-
-
 UPDATE hotels
-set manager = 'Van Gelis'
-where number = 7
+set `order` = `order`-1
+where `order` > 2 
+
+select Max(`order`) from hotels
+
+
+ALTER TABLE hotels AUTO_INCREMENT = 5;
+
+alter TABLE hotels
+ADD COLUMN `order` INT FIRST
+
+ALTER TABLE hotels ADD `order` INT PRIMARY KEY AUTO_INCREMENT FIRST
+
+
+alter TABLE hotels
+drop COLUMN `order`
+
+DELETE FROM hotels
+ WHERE manager IS NULL;
+
+
+
+UPDATE account
+set FirstName = 'Fran'
+where LastName = 'Cesca'
+
+insert into hotels (Email) select 
+Email from account;
