@@ -12,6 +12,14 @@ if(isset($_POST['validate'])) {
         CreateInfoManager($_POST['Name'],$_POST['City'],$_POST['Adress'],$_POST['Description'],
         $_POST['FirstName'],$_POST['LastName'],$_POST['Email'],$_POST['Password']);
     }
+    else if($_POST['validate'] == 'UpdateInfo') {
+        UpdateInfoManager($_POST['Order'],$_POST['Name'],$_POST['City'],$_POST['Adress'],$_POST['Description'],
+        $_POST['FirstName'],$_POST['LastName'],$_POST['Email'],$_POST['Password']);
+    }
+    else if($_POST['validate'] == 'DeleteInfo') {
+        DeleteInfoManager($_POST['Order'],$_POST['Email']);
+    }
+    
 }
 
 
@@ -151,7 +159,6 @@ function createAccount ($FirstName,$LastName,$Email,$Password,$Priority=0)
     $hash = crypt($Password, PASSWORD_DEFAULT);
 
     $sql->execute([$FirstName, $LastName, $Email, $hash, $Priority]);
-    
 }
 
 
@@ -166,6 +173,7 @@ function getAdminInput($hotel){
 
     $statement = $conn->query($sql);
     $Client = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $order = $name = $Client[0]['order'];
     $name = $Client[0]['HotelName'];
     $manager = $Client[0]['manager'];
     $city = $Client[0]['city'];
@@ -182,7 +190,7 @@ function getAdminInput($hotel){
     $Email = $Client2[0]['Email'];
     $Hash = $Client2[0]['Password'];
     
-    echo '{"Name":"'.$name.'","City":"'.$city.'",
+    echo '{"Order":"'.$order.'","Name":"'.$name.'","City":"'.$city.'",
         "Adress":"'.$adress.'","LastName":"'.$LastName.'",
         "FirstName":"'.$FirstName.'","Email":"'.$Email.'",
         "Hash":"'.$Hash.'","Description":'.json_encode($description).'}';
@@ -191,10 +199,18 @@ function getAdminInput($hotel){
 
 function createHotel($Manager,$HotelName,$Description,$Adress,$City){
     require_once 'dbConnect.php';
+
     $conn = connect();
-    $sql = 'Insert Into hotels () Values(?,?,?,?,?)';
+
+    $sql = 'select Max(`order`) from hotels';
+
+    $statement = $conn->query($sql);
+    $MaxOrder = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $MaxOrderValue = $MaxOrder[0]["Max(`order`)"]; 
+
+    $sql = 'Insert Into hotels (`order`,manager,HotelName,description,adress,city) Values(?,?,?,?,?,?)';
     $sql= $conn->prepare($sql);
-    $sql->execute([$Manager, $HotelName, $Description, $Adress, $City]);
+    $sql->execute([$MaxOrderValue+1,$Manager, $HotelName, $Description, $Adress, $City]);
 }
 
 function CreateInfoManager($Name,$City,$Adress,$Description,$FirstName,$LastName,$Email,$Password){
@@ -203,6 +219,57 @@ function CreateInfoManager($Name,$City,$Adress,$Description,$FirstName,$LastName
         $managerName = $FirstName." ".$LastName;
         createHotel($managerName,$Name,$Description,$Adress,$City);
     }
+
+    echo "Correct";
+
+}
+
+function UpdateInfoManager($Order,$Name,$City,$Adress,$Description,$FirstName,$LastName,$Email,$Password){
+    require_once 'dbConnect.php';
+    
+    $conn = connect();
+    $managerName = $FirstName." ".$LastName;
+    $data = [
+        'manager'=>$managerName, 
+        'HotelName' => $Name, 
+        'Description' => $Description,
+        'Adress' => $Adress,
+        'city' => $City,
+        'Order' => (int)$Order
+   ];
+   
+   $sql = "UPDATE hotels SET manager=:manager,
+    HotelName=:HotelName, description=:Description,
+     adress=:Adress, city=:city WHERE `order`=:Order";
+    
+    $stmt= $conn->prepare($sql);
+    $stmt->execute($data);
+    
+    $sql = "UPDATE account SET FirstName=?, LastName=?, Password=? WHERE Email=?";
+    $stmt= $conn->prepare($sql);
+    $hash = crypt($Password, PASSWORD_DEFAULT);
+    $stmt->execute([$FirstName, $LastName, $hash, $Email]);
+
+    echo "Correct";
+      
+}
+
+function DeleteInfoManager($Order,$Email){
+    require_once 'dbConnect.php';
+    $conn = connect();
+    $sql =  " DELETE FROM hotels WHERE `order`=?";
+    $sql= $conn->prepare($sql);
+    $sql->execute([$Order]);
+
+    $sql =  " DELETE FROM account WHERE Email=?";
+    $sql= $conn->prepare($sql);
+    $sql->execute([$Email]); 
+
+    $sql =  "UPDATE hotels set `order` = `order`-1 where `order` > ?";
+    $sql= $conn->prepare($sql);
+    $sql->execute([$Order]);
+
+    echo "Correct";
 
 }
 

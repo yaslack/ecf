@@ -23,6 +23,9 @@ function disableBtn(){
     document.getElementById("AdminBtnUpdate").classList.add('disabled');
     document.getElementById("AdminBtnCreate").classList.add('disabled');
     document.getElementById("AdminBtnDelete").classList.add('disabled');
+
+    document.getElementById('AdminInputEmail').removeAttribute('required');
+    document.getElementById('AdminInputEmail').setAttribute('readonly', true);
   }
   else if(selected_value == "New +"){
     document.getElementById("AdminBtnUpdate").classList.add('disabled');
@@ -30,12 +33,18 @@ function disableBtn(){
     document.getElementById("AdminBtnCreate").classList.remove('disabled');
     document.getElementById("AdminBtnCreate").classList.remove('disabled');
     document.getElementById("AdminInputHash").value ="Enter New Password";
+
+    document.getElementById('AdminInputEmail').removeAttribute('readonly');
+    document.getElementById('AdminInputEmail').setAttribute('required', true);
     
   }
   else{
     document.getElementById("AdminBtnUpdate").classList.remove('disabled');
     document.getElementById("AdminBtnDelete").classList.remove('disabled');
     document.getElementById("AdminBtnCreate").classList.add('disabled');
+
+    document.getElementById('AdminInputEmail').removeAttribute('required');
+    document.getElementById('AdminInputEmail').setAttribute('readonly', true);
   }
 }
 
@@ -65,7 +74,8 @@ function currentHotel(hotel){
     cache: false,
     success: function(data) {
 
-      var text = JSON.parse(data); 
+      var text = JSON.parse(data);
+      document.getElementById("AdminInputOrder").value = text.Order; 
       document.getElementById("AdminInputName").value = text.Name;
       document.getElementById("AdminInputCity").value = text.City;
       document.getElementById("AdminInputAdress").value = text.Adress;
@@ -81,10 +91,63 @@ function currentHotel(hotel){
 }
 
 function UpdateInfo(){
-  console.log("yooooooo");
+  Order = document.getElementById("AdminInputOrder").value;
+  Name = document.getElementById("AdminInputName").value;
+  City = document.getElementById("AdminInputCity").value;
+  Adress = document.getElementById("AdminInputAdress").value;
+  Description = document.getElementById("AdminInputDescription").value;
+  LastName = document.getElementById("AdminInputLastName").value;
+  FirstName = document.getElementById("AdminInputFirstName").value;
+  Email = document.getElementById("AdminInputEmail").value;
+  Password = document.getElementById("AdminInputHash").value;
+
+  $.ajax({
+    type: "POST",
+    url: "php/dbActions.php",
+    data: {validate: 'UpdateInfo', Order: Order, Name: Name, City: City,
+     Adress: Adress, Description: Description, LastName: LastName,
+     FirstName: FirstName, Email: Email, Password: Password},
+    cache: false,
+    success: function(data) {
+      var form = $("#AdminForm");
+      if (form[0].checkValidity() === false) {
+        form[0].reportValidity();
+      }
+      else{
+        if (data == "Correct") {
+          
+          var mymodal = $('#AdminModal');
+          mymodal.find('.modal-body').text('Updated Successfully');
+          mymodal.modal('show');
+        }
+      }
+      
+
+  }
+});
 }
 function DeleteInfo(){
-  console.log("yooooooo");
+  Order = document.getElementById("AdminInputOrder").value;
+  Email = document.getElementById("AdminInputEmail").value;
+
+  $.ajax({
+    type: "POST",
+    url: "php/dbActions.php",
+    data: {validate: 'DeleteInfo', Order: Order, Email: Email},
+    cache: false,
+    success: function(data) {
+      var form = $("#AdminForm");
+      if (data == "Correct") {
+        
+        var mymodal = $('#AdminModal');
+        mymodal.find('.modal-body').text('Deleted Successfully');
+        mymodal.modal('show');
+      }
+      
+      
+
+  }
+});
 }
 function CreateInfo(){
   Name = document.getElementById("AdminInputName").value;
@@ -104,12 +167,13 @@ function CreateInfo(){
      FirstName: FirstName, Email: Email, Password: Password},
     cache: false,
     success: function(data) {
+      //console.log(data);
       var form = $("#AdminForm");
       if (form[0].checkValidity() === false) {
         form[0].reportValidity();
       }
       else{
-        if (data == "Correct") {
+        if (data == "CorrectCorrect") {
           var mymodal = $('#AdminModal');
           mymodal.find('.modal-body').text('Created Successfully');
           mymodal.modal('show');

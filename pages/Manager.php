@@ -54,22 +54,15 @@
   <main>
     <div>
       <h1 >
-        Admin
+        Manager
       </h1>
     </div>
     
     <div class="justify-content-center input-group mb-3">
       <div class="input-group-prepend">
-        <label class="input-group-text" for="inputGroupSelect01">Chose Hotel</label>
+        <label class="input-group-text" for="inputGroupSelect01">Chose Facade Image</label>
       </div>
-      <select class="custom-select" id="inputSelect1">
-        <option selected>New +</option>
-        <option selected>Choose...</option>
-        <?php
-          require_once('php/Controller.php');
-          AdminHotelsChose();
-        ?>
-      </select>
+      
     </div>
 
     <form id="AdminForm">
