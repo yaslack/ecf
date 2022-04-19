@@ -12,6 +12,10 @@
 <body>
 
 
+<?php
+  require_once('php/redirect.php');
+  RedirectLoginRegister();
+  ?>
 
   <header>
     <!-- Just an image -->

@@ -79,6 +79,18 @@ function getClientConnection($Email){
 
     $clientInfo[] = $client[0]['FirstName'];
     $clientInfo[] = $client[0]['LastName'];
+    $clientInfo[] = getClientPriority($Email);
+    $clientInfo[] = $Email;
+
+    if(getClientPriority($Email) ==  1){
+        $sql =  'select `order` from hotels where Email = "'.$Email.'"';
+        $statement = $conn->query($sql);
+        $client = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $clientInfo[] = $client[0]['order'];
+    }
+    else{
+        $clientInfo[] = -1;
+    }
 
     return $clientInfo;
 }
@@ -197,7 +209,7 @@ function getAdminInput($hotel){
 
 }
 
-function createHotel($Manager,$HotelName,$Description,$Adress,$City){
+function createHotel($Email,$Manager,$HotelName,$Description,$Adress,$City){
     require_once 'dbConnect.php';
 
     $conn = connect();
@@ -208,16 +220,16 @@ function createHotel($Manager,$HotelName,$Description,$Adress,$City){
     $MaxOrder = $statement->fetchAll(PDO::FETCH_ASSOC);
     $MaxOrderValue = $MaxOrder[0]["Max(`order`)"]; 
 
-    $sql = 'Insert Into hotels (`order`,manager,HotelName,description,adress,city) Values(?,?,?,?,?,?)';
+    $sql = 'Insert Into hotels (`order`,manager,HotelName,description,adress,city,Email) Values(?,?,?,?,?,?,?)';
     $sql= $conn->prepare($sql);
-    $sql->execute([$MaxOrderValue+1,$Manager, $HotelName, $Description, $Adress, $City]);
+    $sql->execute([$MaxOrderValue+1,$Manager, $HotelName, $Description, $Adress, $City,$Email]);
 }
 
 function CreateInfoManager($Name,$City,$Adress,$Description,$FirstName,$LastName,$Email,$Password){
     if(CheckRegister($Email)){
         createAccount($FirstName,$LastName,$Email,$Password,1);
         $managerName = $FirstName." ".$LastName;
-        createHotel($managerName,$Name,$Description,$Adress,$City);
+        createHotel($Email,$managerName,$Name,$Description,$Adress,$City);
     }
 
     echo "Correct";
@@ -272,5 +284,17 @@ function DeleteInfoManager($Order,$Email){
     echo "Correct";
 
 }
+
+function getClientPriority($Email){
+    require_once 'dbConnect.php';
+    $conn = connect();
+
+    $sql = 'SELECT Priority FROM account where Email= "'.$Email.'"';
+    $statement = $conn->query($sql);
+    // get all publishers
+    $Priority = $statement->fetchAll(PDO::FETCH_ASSOC);
+    $PriorityValue = $Priority[0]["Priority"];
+    return $PriorityValue;
+} 
 
 ?>

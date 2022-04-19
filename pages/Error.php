@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="../style/main.css">
 
 </head>
 <body>
@@ -17,81 +17,24 @@
     <!-- Just an image -->
   <nav id="navbar" class="navbar navbar-light fixed-top bg-doré" >
     
-    <button id="btnCollapse" class="navbar-toggler m-md-5" type="button" data-bs-toggle="collapse" data-bs-target="#navbar2" aria-expanded="false" aria-controls="navbar2">
-      <span class="navbar-toggler-icon"></span>
-    </button>
   <div class="navbar-item mx-auto" href="#">
-    <img src="assets/Logo.PNG" width="100" height="100" alt="">
+    <img src="../assets/Logo.PNG" width="100" height="100" alt="">
   </div>
-  <a id="bookNow" class="navbar-brand   m-md-5" href="book.php">Book Now</a>
   </nav
 
-  <nav>
-    <div id="navbar2" class="navbar-collapse collapse fixed-left text-center">
-      <ul id="main-menu" class="navbar-nav">
-        <li class="nav-item text-start">
-          <a href="#" class="nav-link" type="button" data-bs-toggle="collapse" data-bs-target="#navbar2" aria-expanded="false" aria-controls="navbar2">
-            <svg id ="crossCollapse" xmlns="https://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
-              <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-              <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-            </svg>
-          </a>
-        </li>
-        <?php
-          require_once('pages/php/Controller.php');
-          navbar2Options();
-
-        ?>
-      </ul>
-    </div>
-  </nav>
 
   </header>
 
   <main>
     <div>
-      <?php
-      require_once('pages/php/Controller.php');
-      numberHotelLabel();
-      ?>
+      <h1 >
+        You're not supposed to be here
+      </h1>
+        <div style="text-align: center">
+            <a style="color:black; border-style:solid" href="../index.php" class="button large hpbottom">Home</a>
+        </div>
     </div>
     
-    
-
-    <div id="mycarousel" class="carousel slide" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <?php
-          require_once('pages/php/Controller.php');
-          firstCarousel();
-          restCarousel();
-        ?>
-      </div>
-      <button class="carousel-control-prev" type="button" data-bs-target="#mycarousel" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon " aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button class="carousel-control-next" type="button" data-bs-target="#mycarousel" data-bs-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
-
-
-    <div id="infoHotel" class="container-fluid">
-      <div class="row">
-        <div class="col-xs-12 col-sm-6 pull-right">
-        <img src='https://wallpaperaccess.com/full/11729.jpg'
-          class="img-fluid">
-        </div>
-        <div class="col-xs-12 col-sm-6 pull-left text-center">
-          <p>LOREMFKSLMKFSLSQFLLLLLLLLLLLLLLL
-            ddksqkndldlsqdsdkdsq
-            sdklqssssssssssssdddddddddddddddddddddddddddddddddddddddddddddddd
-          </p>
-        </div>
-      </div>
-    </div>
-
 
   </main>
   
@@ -104,7 +47,7 @@
   >
     <!-- Left -->
     <div class="mx-auto" href="#">
-      <img src="assets/Logo.PNG" width="75" height="75" alt="">
+      <img src="../assets/Logo.PNG" width="75" height="75" alt="">
     </div>
 
   </section>
@@ -174,7 +117,7 @@
 <!-- Footer -->
 
 
-<script src="js/index.js"></script>
+<script src="../js/index.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
  integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

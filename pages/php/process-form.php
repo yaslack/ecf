@@ -1,8 +1,9 @@
 <?php
 
 if(isset($_POST["Login"])){ 
-    header("Location: ../index.php");
     login();
+    header("Location: http://localhost:3000/index.php");
+    die();
 }
 
 else if(isset($_POST["Register"])){
@@ -20,9 +21,14 @@ function login(){
     $clientInfo = getClientConnection($Email);
     $FirstName = $clientInfo[0];
     $LastName = $clientInfo[1];
-    $client->updateClient($FirstName,$LastName);
+    $Priority = $clientInfo[2];
+    $EMAIL = $clientInfo[3];
+    $ORDER = $clientInfo[4];
+    $client->updateClient($FirstName,$LastName,$Priority,$EMAIL,$ORDER);
     session_start();
-    $_SESSION['name'] = $clientInfo;    
+    $_SESSION['name'] = $clientInfo;
+    var_dump($_SESSION);
+
 }
 
 function register(){

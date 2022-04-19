@@ -11,6 +11,10 @@
 </head>
 <body>
 
+  <?php
+  require_once('php/redirect.php');
+  RedirectManager();
+  ?>
 
 
   <header>
@@ -40,9 +44,6 @@
           <a href="../index.php" class="nav-link">Home</a>
         </li>
         <li class="nav-item">
-          <a href="LoginRegister.php" class="nav-link">Login/Register</a>
-        </li>
-        <li class="nav-item">
           <a href="Contact.php" class="nav-link">Contact us</a>
         </li>
       </ul>
@@ -60,9 +61,23 @@
     
     <div class="justify-content-center input-group mb-3">
       <div class="input-group-prepend">
-        <label class="input-group-text" for="inputGroupSelect01">Chose Facade Image</label>
+        <h2> Facade Image</h2>
       </div>
-      
+    </div>
+    <div class="justify-content-center input-group mb-3">
+        <h5>Actual Image :</h5>
+        <?php
+        require_once('php/Controller.php');
+        facadeImage();
+        ?>
+    </div>
+    <div class="justify-content-center input-group mb-3">
+        
+        <form action="php/Upload.php" method="post" enctype="multipart/form-data">
+            Select image to upload:
+            <input type="file" name="fileToUpload" id="fileToUpload">
+            <input type="submit" value="Upload Image" name="submitFacade">
+        </form>
     </div>
 
     <form id="AdminForm">
@@ -116,9 +131,6 @@
     <div id="AdminModal" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-              <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Error</h5>
-              </div>
               <div class="modal-body">
                       <p> </p>
                   </div>

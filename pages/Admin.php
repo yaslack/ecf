@@ -11,7 +11,10 @@
 </head>
 <body>
 
-
+  <?php
+  require_once('php/redirect.php');
+  RedirectAdmin();
+  ?>
 
   <header>
     <!-- Just an image -->
@@ -38,9 +41,6 @@
         </li>
         <li class="nav-item">
           <a href="../index.php" class="nav-link">Home</a>
-        </li>
-        <li class="nav-item">
-          <a href="LoginRegister.php" class="nav-link">Login/Register</a>
         </li>
         <li class="nav-item">
           <a href="Contact.php" class="nav-link">Contact us</a>
@@ -123,9 +123,6 @@
     <div id="AdminModal" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-              <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLabel">Error</h5>
-              </div>
               <div class="modal-body">
                       <p> </p>
                   </div>
