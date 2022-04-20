@@ -11,8 +11,10 @@ if(isset($_POST['validate'])){
 
 function numberHotelLabel(){
 
-    $path = '../assets/hotels/';
-    $files = array_diff(scandir($path), array('.', '..'));
+    
+    $path = 'assets/hotels/';
+    $files = glob($path . '/*' , GLOB_ONLYDIR);
+
     if(count($files)==0){
         echo("  
         <h1 >
@@ -39,8 +41,8 @@ function numberHotelLabel(){
 }
 
 function firstCarousel(){
-    $path = '../assets/hotels/';
-    $files = array_diff(scandir($path), array('.', '..'));
+    $path = 'assets/hotels/';
+    $files = glob($path . '/*' , GLOB_ONLYDIR);
     if(count($files)==0){
         echo "0 Image Loaded";
     }
@@ -56,16 +58,16 @@ function firstCarousel(){
 
 function restCarousel(){
     
-    $path = '../assets/hotels/';
-    $files = array_diff(scandir($path), array('.', '..'));
+    $path = 'assets/hotels/';
+    $files =glob($path . '/*' , GLOB_ONLYDIR);
     if(count($files)==0){
         echo "0 Image Loaded";
     }
     else{
-        for($i=1; $i<=count($files);$i++){
+        for($i=2; $i<=count($files);$i++){
             echo '
             <div class="carousel-item">
-                <img src="assets/hotels/'.($i+1).'/facade/facade.png" class="d-block w-100" >
+                <img src="assets/hotels/'.$i.'/facade/facade.png" class="d-block w-100" >
             </div>
             ';
         }
