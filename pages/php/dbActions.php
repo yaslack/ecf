@@ -23,7 +23,6 @@ if(isset($_POST['validate'])) {
 }
 
 
-
 function GetManagers(){
     $conn = connect();
 
@@ -281,6 +280,10 @@ function DeleteInfoManager($Order,$Email){
     $sql= $conn->prepare($sql);
     $sql->execute([$Order]);
 
+    $path = 'assets/hotels/'.$Order.'/';
+
+    deleteDir($path);
+
     echo "Correct";
 
 }
@@ -296,5 +299,25 @@ function getClientPriority($Email){
     $PriorityValue = $Priority[0]["Priority"];
     return $PriorityValue;
 } 
+
+function deleteDir($dirPath) {
+    if (! is_dir($dirPath)) {
+        throw new InvalidArgumentException("$dirPath must be a directory");
+    }
+    if (substr($dirPath, strlen($dirPath) - 1, 1) != '/') {
+        $dirPath .= '/';
+    }
+    $files = glob($dirPath . '*', GLOB_MARK);
+    foreach ($files as $file) {
+        if (is_dir($file)) {
+            self::deleteDir($file);
+        } else {
+            unlink($file);
+        }
+    }
+    rmdir($dirPath);
+
+}
+
 
 ?>

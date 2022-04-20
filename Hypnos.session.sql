@@ -41,6 +41,6 @@ where Email = 'First123@hotmail.com'
 
 insert into hotels (Email) select 
 Email from account;
-
+delete FROM account where Email= "First123@hotmail.com"
 
 SELECT Priority FROM account where Email= "First123@hotmail.com"
