@@ -75,70 +75,34 @@
         
         <form action="php/Upload.php" method="post" enctype="multipart/form-data">
             Select image to upload:
-            <input type="file" name="fileToUpload" id="fileToUpload">
+            <input type="file" name="fileToUpload" id="fileToUpload" accept=".png">
             <input type="submit" value="Upload Image" name="submitFacade">
         </form>
     </div>
 
-    <form id="AdminForm">
+    <div class="justify-content-center input-group mb-3">
       <div class="form-group">
-      <div class="col-xs-6 col-xs-offset-3 text-center" style="margin-bottom: 10px;">
-          <label for="formGroupExampleInput">Order</label>
-          <input type="text" class="form-control disabled" id="AdminInputOrder" placeholder="Order" readonly>
-        </div>
-        <div class="col-xs-6 col-xs-offset-3 text-center" style="margin-bottom: 10px;">
-          <label for="formGroupExampleInput">Name</label>
-          <input type="text" class="form-control" id="AdminInputName" placeholder="Name" required>
-        </div>
-        <div class="col-xs-6 col-xs-offset-3 text-center" style="margin-bottom: 10px;">
-          <label for="formGroupExampleInput">City</label>
-          <input type="text" class="form-control" id="AdminInputCity" placeholder="City" required>
-        </div>
-        <div class="col-xs-6 col-xs-offset-3 text-center" style="margin-bottom: 10px;">
-          <label for="formGroupExampleInput">Adress</label>
-          <input type="text" class="form-control" id="AdminInputAdress" placeholder="Adress" required>
-        </div>
-        <div class="col-xs-6 col-xs-offset-3 text-center" style="margin-bottom: 10px;">
-          <label for="formGroupExampleInput">Description</label>
-          <textarea type="text" class="form-control" id="AdminInputDescription" placeholder="Description" required></textarea>
-        </div>
-        <div class="col-xs-6 col-xs-offset-3 text-center" style="margin-bottom: 10px;">
-          <label for="formGroupExampleInput">Manager LastName</label>
-          <input type="text" class="form-control" id="AdminInputLastName" placeholder="Last Name" required>
-        </div>
-        <div class="col-xs-6 col-xs-offset-3 text-center" style="margin-bottom: 10px;">
-          <label for="formGroupExampleInput">Manager FirstName</label>
-          <input type="text" class="form-control" id="AdminInputFirstName" placeholder="First Name" required>
-        </div>
-        <div class="col-xs-6 col-xs-offset-3 text-center" style="margin-bottom: 10px;">
-          <label for="formGroupExampleInput">Manager mail</label>
-          <input type="email" class="form-control" id="AdminInputEmail" aria-describedby="emailHelp" placeholder="Email">
-        </div>
-        <div class="col-xs-6 col-xs-offset-3 text-center" style="margin-bottom: 10px;">
-          <label for="formGroupExampleInput">Manager Hash password </label>
-          <input type="text" class="form-control" id="AdminInputHash" placeholder="Hash" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" 
-            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
-        </div>
+        <label for="selectNumRoom">Choose number of room</label>
+        <select class="form-control" id="selectNumRoom">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
       </div>
-    </form>
-    
-    <div class="text-center">
-      <button id="AdminBtnUpdate" type="button" onclick="UpdateInfo()"  class="btn btn-dark-grey">Update</button>
-      <button id="AdminBtnDelete" type="button" onclick="DeleteInfo()" class="btn btn-dark-grey">Delete</button>
-      <button id="AdminBtnCreate" type="button" onclick="CreateInfo()" class="btn btn-dark-grey">Create</button>
     </div>
-
-    <div id="AdminModal" class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-body">
-                      <p> </p>
-                  </div>
-              <div class="modal-footer">
-              <button id="closeModalButton" type="button" class="btn btn-dark-grey" data-bs-dismiss="modal">Close</button>
-            </div>
-          </div>
+    <div class="justify-content-center input-group mb-3">
+      <form action="php/Upload.php" method="post" enctype="multipart/form-data">
+      <?php
+        require_once('php/Controller.php');
+        numRooms();
+        ?>
+      <div class="justify-content-center input-group mb-3">
+        <input type="submit" value="Validate" name="submitRooms">
       </div>
+      </form>
+    </div>
 
   </main>
   
@@ -222,6 +186,7 @@
 
 
 <script src="../js/index.js"></script>
+<script src="../js/manager.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
  integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

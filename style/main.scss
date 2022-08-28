@@ -1,10 +1,15 @@
 $theme-colors: (
     "doré": #FFFAE9, 
     "dark-grey": #2B2B2B,
-    "primary": blue
+    "primary": blue,
+    "whitesmoke": whitesmoke
 );
 
 @import "../node_modules/bootstrap/scss/bootstrap";
+
+//font
+@import url('https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&display=swap');
+//font
 
 
 
@@ -133,4 +138,30 @@ a:hover{
 }
 .contact-links:hover{
     color: rgb(126, 86, 0); 
+}
+
+#btnMore{
+    color: black;
+    padding: 10px;
+    background-color: white;
+    border-style: solid;
+    border-color: rgb(126, 86, 0); 
+}
+
+#btnMore:hover{
+    color: rgb(126, 86, 0);  
+    border-color: rgb(41, 28, 0); 
+}
+
+#descRoom{
+    color: #513500;
+    font-family: 'Kiwi Maru';
+    font-size: larger;
+}
+
+#facadeHotel > img{
+    width: 100vw;
+    height: 50vh;
+    object-fit: cover;
+    margin-bottom: 50px;
 }

@@ -92,7 +92,7 @@
         </div>
         <div class="col-xs-6 col-xs-offset-3 text-center" style="margin-bottom: 10px;">
           <label for="formGroupExampleInput">Description</label>
-          <textarea type="text" class="form-control" id="AdminInputDescription" placeholder="Description" required></textarea>
+          <textarea type="text" class="form-control" id="AdminInputDescription" placeholder="Description" maxlength="230" required></textarea>
         </div>
         <div class="col-xs-6 col-xs-offset-3 text-center" style="margin-bottom: 10px;">
           <label for="formGroupExampleInput">Manager LastName</label>
@@ -214,6 +214,7 @@
 
 
 <script src="../js/index.js"></script>
+<script src="../js/admin.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
  integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

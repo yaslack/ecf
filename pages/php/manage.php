@@ -7,21 +7,120 @@ if(isset($_POST['validate'])){
     if($_POST['validate'] == 'currHotel'){
         updateInputs($_POST['hotel']);
     }
+    if($_POST['validate'] == 'NumRoom'){
+        numRooms();
+    }
+    if($_POST['validate'] == 'roomIndex'){
+        roomIndex();
+        roomIndexMore();
+    }
+    if($_POST['validate'] == 'currHotelReservation'){
+        updateRoomsReservation($_POST['hotel']);
+    }
+}
+
+function getRoomsDescription($numRooms,$Order,$path){
+
+    $description = [];
+    for($i=0; $i<$numRooms; $i++){
+        if(file_exists($path."room".($i+1).".txt")){
+            $filename = $path."room".($i+1).".txt";
+            $file = fopen( $filename, "r" );
+            
+            if( $file == false ) {
+               echo ( "Error in opening file" );
+               exit();
+            }
+            
+            $filesize = filesize( $filename );
+            $description[$i] = fread( $file, $filesize );
+            
+            fclose( $file );
+        }
+    }
+    return $description;
+
+}
+
+
+function updateRoomsReservation($hotel){
+    require_once 'dbActions.php';
+    $order = getOrderFromHotelName($hotel);
+    $path = "../../assets/hotels/".$order."/room/";
+    $nbFiles=count(scandir($path))-2;
+    $nbImg = 0;
+    for($i = 1 ; $i<$nbFiles; $i++)
+        if (file_exists($path."room".$i.".png")) {
+            $nbImg ++;
+    }
+
+    echo '{"Order":"'.$order.'","nbImg":"'.$nbImg.'"}';
+    
+}
+
+function numRooms(){
+    $ORDER = $_SESSION['name'][4];
+    if(isset($_POST ['validate'])){
+        if($_POST['validate'] == 'NumRoom'){
+            $rooms = $_POST['numRoom'];
+            echo ("<h5 id='numRoomSent'>You have chosen ".$rooms." Room</h5>");
+            
+            for($i = 0; $i<$rooms; $i++){
+                if ( !isset($_SESSION) ) session_start();
+                $ORDER = $_SESSION['name'][4];
+                $path = "../../assets/hotels/".$ORDER."/room/";
+                $description = getRoomsDescription($rooms,$ORDER,$path);
+                if(count($description)<($i+1)){
+                    $description[$i] = "Example";
+                }
+                $pathImage='../../assets/hotels/'.$ORDER.'/room/room'.($i+1).'.png';
+                if(file_exists($pathImage)){
+                    $pathImage ='../assets/hotels/'.$ORDER.'/room/room'.($i+1).'.png';
+                }
+                else{
+                    $pathImage = '..';
+                }
+
+                echo('
+                <div class="justify-content-center input-group mb-3">
+                <div class="form-group">
+                  <label for="testAreaRoom'.($i+1).'">Description:</label>
+                  <textarea class="form-control" id="testAreaRoom'.($i+1).'" name="description[]" multiple>'.$description[$i].'</textarea>
+                </div>
+                <div style="padding-left: 30px;">
+                  <div>
+                    <img width="100" height="100" src='.$pathImage.'>
+                  </div>
+                    <label for="file">File:</label>
+                    <input type="file" name="files[]" accept=".png" multiple>
+                </div>
+              </div>
+                ');
+
+            }
+            
+        }
+    }
+    else{
+        echo ("<h5 id='numRoomSent'></h5>");
+        
+    }
 }
 
 function numberHotelLabel(){
 
-    $path = '../assets/hotels/';
+    $path = 'assets/hotels/';
     $files = array_diff(scandir($path), array('.', '..'));
-    if(count($files)==0){
+    $numberFiles = count($files);
+    if($numberFiles==0){
         echo("  
         <h1 >
             Sorry no Hotel available at this moment
         </h1>
         ");
     }
-    else if(count($files)==1){
-        echo count($files);
+    else if($numberFiles==1){
+        echo $numberFiles;
         echo("  
         <h1 >
         Discover Our Hotel
@@ -32,14 +131,14 @@ function numberHotelLabel(){
 
         echo("  
         <h1 >
-            Discover Our ".count($files)." Hotels
+            Discover Our ".$numberFiles." Hotels
         </h1>
         ");
     }
 }
 
 function firstCarousel(){
-    $path = '../assets/hotels/';
+    $path = 'assets/hotels/';
     $files = array_diff(scandir($path), array('.', '..'));
     if(count($files)==0){
         echo "0 Image Loaded";
@@ -56,19 +155,108 @@ function firstCarousel(){
 
 function restCarousel(){
     
-    $path = '../assets/hotels/';
+    $path = 'assets/hotels/';
     $files = array_diff(scandir($path), array('.', '..'));
-    if(count($files)==0){
-        echo "0 Image Loaded";
-    }
-    else{
-        for($i=1; $i<=count($files);$i++){
+    if(count($files)>1){
+        for($i=2; $i<=count($files);$i++){
             echo '
             <div class="carousel-item">
-                <img src="assets/hotels/'.($i+1).'/facade/facade.png" class="d-block w-100" >
+                <img src="assets/hotels/'.$i.'/facade/facade.png" class="d-block w-100" >
             </div>
             ';
         }
+    }
+}
+
+function roomIndex(){
+    
+    if(isset($_POST['numActualRoom'])){
+        $Order = $_POST['numActualRoom'];
+        $path= "../../assets/hotels/".$Order."/room/";
+        $files = glob($path."*.txt");
+        $numRoom = count($files);
+        $description = getRoomsDescription($numRoom,$Order,$path);
+        for($i=0; $i<count($description);$i++){
+            $imgSrc = "../../assets/hotels/".$Order."/room/room".($i+1).".png";
+            if(file_exists($imgSrc)){
+                $imgSrc = "assets/hotels/".$Order."/room/room".($i+1).".png";
+            }
+            else{
+                $imgSrc = "assets/NoImage.png";
+            }
+            echo('
+            <div class="row" style="margin-top:10px">
+                <div class="col-xs-12 col-sm-6 pull-right">
+                    <img width="500" src='.$imgSrc.'
+                        class="img-fluid">
+                </div>
+                <div class="col-xs-12 col-sm-6 pull-left text-center">
+                    <p id="descRoom">
+                    '.$description[$i].'
+                    </p> 
+                </div>
+            </div>
+            '
+            );
+        }
+    }
+
+}
+
+function roomIndexMore(){
+    if(isset($_POST['numActualRoom'])){
+        echo('
+        <div class="justify-content-center input-group mb-3">
+            <a id="btnMore" class="navbar-brand m-md-5" href="pages/Hotels.php?hotel='.$_POST['numActualRoom'].'">More..</a>
+        </div>
+        ');
+    }
+
+}
+
+function loadHotelPage($page){
+    echo('
+    <div id="facadeHotel">
+        <img src="../assets/hotels/'.$page.'/facade/facade.png">
+    </div>
+
+    ');
+    $path= "../assets/hotels/".$page."/room/";
+    if(file_exists($path)){
+        $files = glob($path."*.txt");
+        $numRoom = count($files);
+        $descriptionRoom = getRoomsDescription($numRoom,$page,$path);
+        for($i=0; $i<count($descriptionRoom);$i++){
+            $imgSrc = "../assets/hotels/".$page."/room/room".($i+1).".png";
+            if(file_exists($imgSrc)){
+                $imgSrc = "../assets/hotels/".$page."/room/room".($i+1).".png";
+            }
+            else{
+                $imgSrc = "../assets/NoImage.png";
+            }
+            echo('
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-6 pull-right">
+                            <div class="justify-content-center input-group mb-3">
+                                <img width="250" src='.$imgSrc.'
+                                    class="img-fluid">
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-6 pull-left text-center">
+                            <p id="descRoom">
+                            '.$descriptionRoom[$i].'
+                            </p> 
+                        </div>
+                    </div>
+                </div>
+            ');
+        }
+    }
+    else{
+        echo("
+        <p>This Hotel does not exist</p>
+        ");
     }
 }
 
@@ -89,6 +277,9 @@ function navbar2Options(){
         </li>
         <li class="nav-item">
             <a href="pages/Logout.php" class="nav-link">Logout</a>
+        </li>
+        <li class="nav-item">
+            <a href="pages/Reservation.php" class="nav-link">Reservation</a>
         </li>
         ');
         if($_SESSION['name'][2] == 1){
@@ -149,7 +340,7 @@ function facadeImage(){
             }
             else{
                 echo('
-                <img border="0" src="'.$path.'/facade/facade.png" alt="Image" width="100"
+                <img style="padding:10px" border="0" src="'.$path.'/facade/facade.png" alt="Image" width="100"
                  height="100" />
             ');
             }

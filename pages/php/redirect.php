@@ -1,6 +1,14 @@
 <?php
   if ( !isset($_SESSION) ) session_start();
 
+
+function RedirectReservation(){
+    if(!isset($_SESSION['name'])){
+        header('Location: Error.php');
+        
+    }
+}
+
 function RedirectAdmin(){
     if(isset($_SESSION['name'])){
         if($_SESSION['name'][2] != 2)

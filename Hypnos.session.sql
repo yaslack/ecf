@@ -30,8 +30,8 @@ ALTER TABLE hotels ADD `order` INT PRIMARY KEY AUTO_INCREMENT FIRST
 alter TABLE hotels
 drop COLUMN `order`
 
-DELETE FROM hotels
- WHERE manager IS NULL;
+DELETE FROM account
+where Email= "a@a"
 
 
 
@@ -44,3 +44,28 @@ Email from account;
 
 
 SELECT Priority FROM account where Email= "First123@hotmail.com"
+
+select * from hotels
+
+SELECT `order` FROM hotels where HotelName= "Carliona"
+
+create table Reservation
+(
+    Email VARCHAR(50) ,
+    HotelNum int,
+    Room VARCHAR(50),
+    Date VARCHAR(50)
+)
+
+select * from Reservation
+
+DROP TABLE Reservation
+
+Insert into Reservation
+Values ("First123@hotmail.com",1,"room2","26/08/2022:28/08/2022")
+
+Insert into Reservation
+Values ("First123@hotmail.com",1,"room2","14/09/2022:17/09/2022")
+
+
+select Date from reservation where HotelNum = 1 and room = "room1"

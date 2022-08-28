@@ -23,7 +23,7 @@
   <div class="navbar-item mx-auto" href="#">
     <img src="assets/Logo.PNG" width="100" height="100" alt="">
   </div>
-  <a id="bookNow" class="navbar-brand   m-md-5" href="book.php">Book Now</a>
+  <a id="bookNow" class="navbar-brand m-md-5" href="pages/Reservation.php">Book Now</a>
   </nav
 
   <nav>
@@ -58,7 +58,7 @@
     
     
 
-    <div id="mycarousel" class="carousel slide" data-bs-ride="carousel">
+    <div id="mycarousel" class="carousel slide" data-bs-interval="false">
       <div class="carousel-inner">
         <?php
           require_once('pages/php/Controller.php');
@@ -76,21 +76,20 @@
       </button>
     </div>
 
-
-    <div id="infoHotel" class="container-fluid">
-      <div class="row">
-        <div class="col-xs-12 col-sm-6 pull-right">
-        <img src='https://wallpaperaccess.com/full/11729.jpg'
-          class="img-fluid">
+    
+      <div id="infoHotel" class="container-fluid">
+        <div id="room" style="margin: 50px;">
+          <?php
+            require_once('pages/php/Controller.php');
+            roomIndex();
+          ?>
         </div>
-        <div class="col-xs-12 col-sm-6 pull-left text-center">
-          <p>LOREMFKSLMKFSLSQFLLLLLLLLLLLLLLL
-            ddksqkndldlsqdsdkdsq
-            sdklqssssssssssssdddddddddddddddddddddddddddddddddddddddddddddddd
-          </p>
-        </div>
+        <?php
+            require_once('pages/php/Controller.php');
+            roomIndexMore();
+          ?>
       </div>
-    </div>
+
 
 
   </main>
@@ -175,6 +174,7 @@
 
 
 <script src="js/index.js"></script>
+<script src="js/home.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
  integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

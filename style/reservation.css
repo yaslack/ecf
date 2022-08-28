@@ -1,0 +1,21 @@
+#roomChoose > img:hover {
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgb(168, 104, 0), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+img[name=chooseClick] {
+    background-color: white;
+    box-shadow: 0 4px 8px 0 rgb(168, 104, 0), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+#bookRoom{
+    color: black;
+    padding: 10px;
+    outline: 2px solid black;
+}
+#bookRoom:hover{
+    color: rgb(168, 104, 0);
+    background-color: rgb(237, 237, 237);
+    outline: 2px solid rgb(168, 104, 0);
+}
+

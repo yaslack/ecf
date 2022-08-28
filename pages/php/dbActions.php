@@ -19,10 +19,25 @@ if(isset($_POST['validate'])) {
     else if($_POST['validate'] == 'DeleteInfo') {
         DeleteInfoManager($_POST['Order'],$_POST['Email']);
     }
+    else if($_POST['validate'] == 'getDateBook') {
+        getDateBook($_POST['order'],$_POST['room']);
+    }
+    
     
 }
 
+function getDateBook($order,$room){
+    require_once 'dbConnect.php';
+    $conn = connect();
+    
+    $sql = 'select Date from reservation where HotelNum = '.$order.' and Room = "'.$room.'"';
+    $statement = $conn->query($sql);
 
+
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+    echo(json_encode($result));
+}
 
 function GetManagers(){
     $conn = connect();
@@ -281,9 +296,57 @@ function DeleteInfoManager($Order,$Email){
     $sql= $conn->prepare($sql);
     $sql->execute([$Order]);
 
+    deleteAsset($Order);
+
     echo "Correct";
 
 }
+
+function deleteAsset($Order){
+    $path= "../../assets/hotels/";
+    $dir = new DirectoryIterator($path);
+    $isDeleted = false;
+    $count = 0;
+    foreach ($dir as $fileinfo) {
+        if ($fileinfo->isDir() && !$fileinfo->isDot()) {
+            $count ++;
+            $folders = $fileinfo->getFilename();
+            if($isDeleted){
+                rename($path.$count,$path.($count-1));
+            }
+            if(!$isDeleted){
+                if($folders == $Order){
+                    deleteDirectory($path.$Order);
+                    $isDeleted = true;
+                }
+            }
+        }
+    }
+}
+
+function deleteDirectory($dir) {
+    if (!file_exists($dir)) {
+        return true;
+    }
+
+    if (!is_dir($dir)) {
+        return unlink($dir);
+    }
+
+    foreach (scandir($dir) as $item) {
+        if ($item == '.' || $item == '..') {
+            continue;
+        }
+
+        if (!deleteDirectory($dir . DIRECTORY_SEPARATOR . $item)) {
+            return false;
+        }
+
+    }
+
+    return rmdir($dir);
+}
+
 
 function getClientPriority($Email){
     require_once 'dbConnect.php';
@@ -295,6 +358,17 @@ function getClientPriority($Email){
     $Priority = $statement->fetchAll(PDO::FETCH_ASSOC);
     $PriorityValue = $Priority[0]["Priority"];
     return $PriorityValue;
+}
+
+function getOrderFromHotelName($HotelName){
+    require_once 'dbConnect.php';
+    $conn = connect();
+
+    $sql = 'SELECT `order` FROM hotels where HotelName= "'.$HotelName.'"';
+    $statement = $conn->query($sql);
+    // get all publishers
+    $order = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $order[0]["order"];
 } 
 
 ?>

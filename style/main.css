@@ -5,6 +5,7 @@
  * Copyright 2011-2021 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+@import url("https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@300&display=swap");
 :root {
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
@@ -31,9 +32,11 @@
   --bs-doré: #FFFAE9;
   --bs-dark-grey: #2B2B2B;
   --bs-primary: blue;
+  --bs-whitesmoke: whitesmoke;
   --bs-doré-rgb: 255, 250, 233;
   --bs-dark-grey-rgb: 43, 43, 43;
   --bs-primary-rgb: 0, 0, 255;
+  --bs-whitesmoke-rgb: 245, 245, 245;
   --bs-white-rgb: 255, 255, 255;
   --bs-black-rgb: 0, 0, 0;
   --bs-body-color-rgb: 33, 37, 41;
@@ -3323,6 +3326,47 @@ fieldset:disabled .btn {
   border-color: blue;
 }
 
+.btn-whitesmoke {
+  color: #000;
+  background-color: whitesmoke;
+  border-color: whitesmoke;
+}
+
+.btn-whitesmoke:hover {
+  color: #000;
+  background-color: #f7f7f7;
+  border-color: #f6f6f6;
+}
+
+.btn-check:focus + .btn-whitesmoke, .btn-whitesmoke:focus {
+  color: #000;
+  background-color: #f7f7f7;
+  border-color: #f6f6f6;
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(208, 208, 208, 0.5);
+          box-shadow: 0 0 0 0.25rem rgba(208, 208, 208, 0.5);
+}
+
+.btn-check:checked + .btn-whitesmoke,
+.btn-check:active + .btn-whitesmoke, .btn-whitesmoke:active, .btn-whitesmoke.active,
+.show > .btn-whitesmoke.dropdown-toggle {
+  color: #000;
+  background-color: #f7f7f7;
+  border-color: #f6f6f6;
+}
+
+.btn-check:checked + .btn-whitesmoke:focus,
+.btn-check:active + .btn-whitesmoke:focus, .btn-whitesmoke:active:focus, .btn-whitesmoke.active:focus,
+.show > .btn-whitesmoke.dropdown-toggle:focus {
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(208, 208, 208, 0.5);
+          box-shadow: 0 0 0 0.25rem rgba(208, 208, 208, 0.5);
+}
+
+.btn-whitesmoke:disabled, .btn-whitesmoke.disabled {
+  color: #000;
+  background-color: whitesmoke;
+  border-color: whitesmoke;
+}
+
 .btn-outline-doré {
   color: #FFFAE9;
   border-color: #FFFAE9;
@@ -3422,6 +3466,40 @@ fieldset:disabled .btn {
 
 .btn-outline-primary:disabled, .btn-outline-primary.disabled {
   color: blue;
+  background-color: transparent;
+}
+
+.btn-outline-whitesmoke {
+  color: whitesmoke;
+  border-color: whitesmoke;
+}
+
+.btn-outline-whitesmoke:hover {
+  color: #000;
+  background-color: whitesmoke;
+  border-color: whitesmoke;
+}
+
+.btn-check:focus + .btn-outline-whitesmoke, .btn-outline-whitesmoke:focus {
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(245, 245, 245, 0.5);
+          box-shadow: 0 0 0 0.25rem rgba(245, 245, 245, 0.5);
+}
+
+.btn-check:checked + .btn-outline-whitesmoke,
+.btn-check:active + .btn-outline-whitesmoke, .btn-outline-whitesmoke:active, .btn-outline-whitesmoke.active, .btn-outline-whitesmoke.dropdown-toggle.show {
+  color: #000;
+  background-color: whitesmoke;
+  border-color: whitesmoke;
+}
+
+.btn-check:checked + .btn-outline-whitesmoke:focus,
+.btn-check:active + .btn-outline-whitesmoke:focus, .btn-outline-whitesmoke:active:focus, .btn-outline-whitesmoke.active:focus, .btn-outline-whitesmoke.dropdown-toggle.show:focus {
+  -webkit-box-shadow: 0 0 0 0.25rem rgba(245, 245, 245, 0.5);
+          box-shadow: 0 0 0 0.25rem rgba(245, 245, 245, 0.5);
+}
+
+.btn-outline-whitesmoke:disabled, .btn-outline-whitesmoke.disabled {
+  color: whitesmoke;
   background-color: transparent;
 }
 
@@ -5251,6 +5329,16 @@ fieldset:disabled .btn {
   color: #00007a;
 }
 
+.alert-whitesmoke {
+  color: #626262;
+  background-color: #fdfdfd;
+  border-color: #fcfcfc;
+}
+
+.alert-whitesmoke .alert-link {
+  color: #4e4e4e;
+}
+
 @-webkit-keyframes progress-bar-stripes {
   0% {
     background-position-x: 1rem;
@@ -5630,6 +5718,22 @@ fieldset:disabled .btn {
   color: #fff;
   background-color: #000099;
   border-color: #000099;
+}
+
+.list-group-item-whitesmoke {
+  color: #626262;
+  background-color: #fdfdfd;
+}
+
+.list-group-item-whitesmoke.list-group-item-action:hover, .list-group-item-whitesmoke.list-group-item-action:focus {
+  color: #626262;
+  background-color: #e4e4e4;
+}
+
+.list-group-item-whitesmoke.list-group-item-action.active {
+  color: #fff;
+  background-color: #626262;
+  border-color: #626262;
 }
 
 .btn-close {
@@ -6867,6 +6971,14 @@ fieldset:disabled .btn {
   color: #0000cc;
 }
 
+.link-whitesmoke {
+  color: whitesmoke;
+}
+
+.link-whitesmoke:hover, .link-whitesmoke:focus {
+  color: #f7f7f7;
+}
+
 .ratio {
   position: relative;
   width: 100%;
@@ -7311,6 +7423,10 @@ fieldset:disabled .btn {
 
 .border-primary {
   border-color: blue !important;
+}
+
+.border-whitesmoke {
+  border-color: whitesmoke !important;
 }
 
 .border-white {
@@ -8200,6 +8316,11 @@ fieldset:disabled .btn {
   color: rgba(var(--bs-primary-rgb), var(--bs-text-opacity)) !important;
 }
 
+.text-whitesmoke {
+  --bs-text-opacity: 1;
+  color: rgba(var(--bs-whitesmoke-rgb), var(--bs-text-opacity)) !important;
+}
+
 .text-black {
   --bs-text-opacity: 1;
   color: rgba(var(--bs-black-rgb), var(--bs-text-opacity)) !important;
@@ -8264,6 +8385,11 @@ fieldset:disabled .btn {
 .bg-primary {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
+}
+
+.bg-whitesmoke {
+  --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-whitesmoke-rgb), var(--bs-bg-opacity)) !important;
 }
 
 .bg-black {
@@ -11447,5 +11573,32 @@ a:hover {
 
 .contact-links:hover {
   color: #7e5600;
+}
+
+#btnMore {
+  color: black;
+  padding: 10px;
+  background-color: white;
+  border-style: solid;
+  border-color: #7e5600;
+}
+
+#btnMore:hover {
+  color: #7e5600;
+  border-color: #291c00;
+}
+
+#descRoom {
+  color: #513500;
+  font-family: 'Kiwi Maru';
+  font-size: larger;
+}
+
+#facadeHotel > img {
+  width: 100vw;
+  height: 50vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-bottom: 50px;
 }
 /*# sourceMappingURL=main.css.map */
