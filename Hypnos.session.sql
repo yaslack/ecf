@@ -1,71 +1,44 @@
-create table ACCOUNT
-(
-    FirstName VARCHAR(50),
-    LastName VARCHAR(50),
-    Email VARCHAR(50),
-    Password VARCHAR(50)
+CREATE TABLE Reservation (
+  `Email` varchar(50) DEFAULT NULL,
+  `HotelNum` int DEFAULT NULL,
+  `Room` varchar(50) DEFAULT NULL,
+  `Date` varchar(50) DEFAULT NULL
 )
 
+INSERT INTO `reservation` (`Email`, `HotelNum`, `Room`, `Date`) VALUES
+('First123@hotmail.com', 1, 'room1', '24/08/2022:26/08/2022'),
+('First123@hotmail.com', 1, 'room1', '27/08/2022:30/08/2022'),
+('First123@hotmail.com', 1, 'room2', '26/08/2022:28/08/2022'),
+('First123@hotmail.com', 1, 'room2', '02/09/2022:05/09/2022'),
+('First123@hotmail.com', 1, 'room2', '08/09/2022:10/09/2022'),
+('First123@hotmail.com', 1, 'room2', '14/09/2022:17/09/2022');
 
-select `order` from hotels where Email = "a@a";
-
-select * From hotels
-select * From account
-
-UPDATE hotels
-set `order` = `order`-1
-where `order` > 2 
-
-select Max(`order`) from hotels
-
-
-ALTER TABLE hotels AUTO_INCREMENT = 5;
-
-alter TABLE hotels
-ADD COLUMN Email VARCHAR(50)
-
-ALTER TABLE hotels ADD `order` INT PRIMARY KEY AUTO_INCREMENT FIRST
-
-
-alter TABLE hotels
-drop COLUMN `order`
-
-DELETE FROM account
-where Email= "a@a"
-
-
-
-UPDATE account
-set Priority = 2
-where Email = 'First123@hotmail.com'
-
-insert into hotels (Email) select 
-Email from account;
-
-
-SELECT Priority FROM account where Email= "First123@hotmail.com"
-
-select * from hotels
-
-SELECT `order` FROM hotels where HotelName= "Carliona"
-
-create table Reservation
-(
-    Email VARCHAR(50) ,
-    HotelNum int,
-    Room VARCHAR(50),
-    Date VARCHAR(50)
+CREATE TABLE hotels (
+  `order` int NOT NULL,
+  `manager` varchar(50) DEFAULT NULL,
+  `HotelName` varchar(50) DEFAULT NULL,
+  `description` varchar(255) DEFAULT NULL,
+  `adress` varchar(255) DEFAULT NULL,
+  `city` varchar(50) DEFAULT NULL,
+  `Email` varchar(50) DEFAULT NULL
 )
 
-select * from Reservation
+INSERT INTO `hotels` (`order`, `manager`, `HotelName`, `description`, `adress`, `city`, `Email`) VALUES
+(1, 'Albert Smith', 'Carliona', 'Pharetra massa massa ultricies mi. Ultrices vitae auctor eu augue ut lectus arcu bibendum at. Suscipit tellus mauris a diam maecenas sed enim. Faucibus nisl tincidunt eget nullam non nisi est sit amet. Tincidunt eget nullam non ni', '75 Street Tarzone', 'Arizona', 'a@a'),
+(2, 'Vaner Yon', 'Sceliora', 'Pharetra massa massa ultricies mi. Ultrices vitae auctor eu augue ut lectus arcu bibendum at. Suscipit tellus mauris a diam maecenas sed enim. Faucibus nisl tincidunt eget nullam non nisi est sit amet. Tincidunt eget nullam non ni', '13 Street Azeni', 'California', 'b@b');
 
-DROP TABLE Reservation
+CREATE TABLE `account` (
+  `FirstName` varchar(50) DEFAULT NULL,
+  `LastName` varchar(50) DEFAULT NULL,
+  `Email` varchar(50) DEFAULT NULL,
+  `Password` varchar(50) DEFAULT NULL,
+  `Priority` int DEFAULT NULL
+)
 
-Insert into Reservation
-Values ("First123@hotmail.com",1,"room2","26/08/2022:28/08/2022")
+INSERT INTO `account` (`FirstName`, `LastName`, `Email`, `Password`, `Priority`) VALUES
+('Roger', 'Arie', 'First123@hotmail.com', '2yT/9zz5emU0I', 2),
+('Albert', 'Smith', 'a@a', '2yT/9zz5emU0I', 1),
+('Vaner', 'Yon', 'b@b', '2yT/9zz5emU0I', 1);
 
-Insert into Reservation
-Values ("First123@hotmail.com",1,"room2","14/09/2022:17/09/2022")
-
-
-select Date from reservation where HotelNum = 1 and room = "room1"
+select * from reservation where EMAIL = "First123@hotmail.com"
+SELECT * from reservation where (HotelNum,Room,Date) in ((1,"room1","24/08/2022:26/08/2022"))

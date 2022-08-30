@@ -1,5 +1,6 @@
 <?php
 
+if ( !isset($_SESSION) ) session_start();
 
 if(isset($_POST['validate'])) {
     if($_POST['validate'] == 'CheckLogin') {
@@ -22,8 +23,47 @@ if(isset($_POST['validate'])) {
     else if($_POST['validate'] == 'getDateBook') {
         getDateBook($_POST['order'],$_POST['room']);
     }
+    else if($_POST['validate'] == 'bookRoom') {
+        bookRoom($_POST['Order'],$_POST['Date'],$_POST['Room']);
+    }
+    else if($_POST['validate'] == 'CancelBook') {
+        cancelBook($_POST['Order'],$_POST['Room'],$_POST['Date']);
+    }
+    
+}
+
+function cancelBook($order,$room,$date){
+    $order = getOrderFromHotelName($order);
+    require_once 'dbConnect.php';
+    $conn = connect();
+    
+    $sql = 'DELETE from reservation where (HotelNum,Room,Date) in (('.$order.',"'.$room.'","'.$date.'"))';
+    $statement = $conn->query($sql);
+
+
+    $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+}
+
+function bookRoom($chosenHotel,$dateBook,$chosenRoom){
+
+    if(isset($_SESSION['name'])){
+
+        require_once 'dbConnect.php';
+        require_once 'Client.php';
+        $conn = connect();
+        
+        $mail = $_SESSION['name'][3];
+        $sql = 'INSERT INTO `reservation` (`Email`, `HotelNum`, `Room`, `Date`) VALUES
+        ("'.$mail.'", '.$chosenHotel.', "'.$chosenRoom.'", "'.$dateBook.'")';
+        $statement = $conn->query($sql);
     
     
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+    
+        echo(json_encode($result));
+    }
+
 }
 
 function getDateBook($order,$room){
@@ -37,6 +77,33 @@ function getDateBook($order,$room){
     $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
     echo(json_encode($result));
+}
+
+function getBookUser(){
+    if(isset($_SESSION['name'])){
+
+        $conn = connect();
+        $mail = $_SESSION['name'][3];
+        $sql = 'select * from reservation where EMAIL = "'.$mail.'"';
+        $statement = $conn->query($sql);
+    
+    
+        $temp = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        $resultNum = array();
+        $resultRoom = array();
+        $resultDate = array();
+    
+        if ($temp) {
+            foreach ($temp as $t) {
+                $resultNum[] = getHotelNameFromOrder($t['HotelNum']);
+                $resultRoom[] = $t['Room'];
+                $resultDate[] = $t['Date'];
+            }
+        }
+        
+        return array($resultNum,$resultRoom,$resultDate);
+    }
 }
 
 function GetManagers(){
@@ -369,6 +436,17 @@ function getOrderFromHotelName($HotelName){
     // get all publishers
     $order = $statement->fetchAll(PDO::FETCH_ASSOC);
     return $order[0]["order"];
+}
+
+function getHotelNameFromOrder($Order){
+    require_once 'dbConnect.php';
+    $conn = connect();
+
+    $sql = 'SELECT HotelName FROM hotels where `order`= '.$Order.'';
+    $statement = $conn->query($sql);
+    // get all publishers
+    $order = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $order[0]["HotelName"];
 } 
 
 ?>

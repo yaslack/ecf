@@ -7,17 +7,10 @@
     <title>Document</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="../style/main.css">
-    <link rel="stylesheet" href="../style/reservation.css">
-    <link rel="stylesheet" href="../style/CalendarPicker.style.css" />
-    <script src="../js/CalendarPicker.js"></script>
+    <link rel="stylesheet" href="../style/Book.css">
 
 </head>
 <body>
-
-  <?php
-  require_once('php/redirect.php');
-  RedirectReservation();
-  ?>
 
 
   <header>
@@ -57,41 +50,17 @@
 
   <main>
     <div style="padding-top: 50px;">
-      <h1 >
-        Reservation
-      </h1>
+        <h1 >
+            My Books
+        </h1>
     </div>
+
+
+  <?php
+        require_once('php/Controller.php');
+        bookLoad();
+    ?>
     
-
-    <div class="justify-content-center input-group mb-3">
-      <select class="custom-select" id="inputSelectHotel">
-          <option selected>Choose Hotel</option>
-          <?php
-            require_once('php/Controller.php');
-            AdminHotelsChose();
-          ?>
-        </select>
-    </div>
-
-    <div class="justify-content-center input-group mb-3">
-      <h3>Choose your room :</h3>
-    </div>
-    <div id="roomChoose" class="justify-content-center input-group mb-3">
-    </div>
-
-    <div class="justify-content-center input-group mb-3">
-        <div id="firstCalendar">
-        <h3>Begin</h3>
-        </div>
-        <div id="secondCalendar">
-        <h3>End</h3>
-        </div>
-    </div>
-    <div class="justify-content-center input-group mb-3">
-      <a id="bookRoom" name="bookRoom" onclick="clickBook()" class="navbar-brand m-md-5" href="Book.php" >Book Now</a>
-    </div>
-
-
   </main>
   
 
@@ -174,9 +143,7 @@
 
 
 <script src="../js/index.js"></script>
-<script src="../js/reservation.js"></script>
-
-
+<script src="../js/Book.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
  integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

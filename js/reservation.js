@@ -1,11 +1,14 @@
 numberRoom = 0;
 choosenRoom = "";
+choosenHotel = "";
 Order = null;
 DateBook = null;
 switchFirst = false;
 switchSecond = false;
 reset = false;
 Sreset = false;
+validBook = false;
+trigger = false;
 
 const nextYear = new Date().getFullYear() + 1;
 const fCalender = new CalendarPicker('#firstCalendar', {
@@ -25,6 +28,9 @@ const sCalender = new CalendarPicker('#secondCalendar', {
 var newDate = fCalender.value
 var oldDate = fCalender.value
 
+var snewDate = sCalender.value
+var soldDate = sCalender.value
+
 var newMonth = getActualMonth(1);
 var oldMonth = getActualMonth(1);
 
@@ -35,14 +41,22 @@ execute1();
 async function execute1() {
   while (true) {
     await new Promise(resolve => setTimeout(resolve, 500));
+    checkBook();
     var newDate = fCalender.value
+    var snewDate = sCalender.value
     var newMonth = getActualMonth(1);
     var snewMonth = getActualMonth(2);
     if(newDate != oldDate ){
+      validBook = false;
       oldDate = newDate;
       resetSecondCalendar();
       getDateBook();
       secondCalendarManage();
+      trigger = true;
+    }
+    else if(snewDate != soldDate && trigger == true){
+      validBook = true;
+      soldDate = snewDate;
     }
     else if(newMonth != oldMonth ){
       switchFirst = true;
@@ -59,6 +73,24 @@ async function execute1() {
     }
   }
 }
+
+function checkBook(){
+  if (validBook == false){
+    var element = document.getElementsByName("bookRoom")[0];
+    if(element.id == "bookRoom"){
+      element.id = "bookRoomDisable";
+      element.setAttribute('onclick','');
+    }
+  }
+  else{
+    var element = document.getElementsByName("bookRoom")[0];
+    if(element.id == "bookRoomDisable" && choosenRoom != ""){
+      element.id = "bookRoom";
+      element.setAttribute('onclick','clickBook()');
+    }
+  }
+}
+
 
 function secondCalendarManage(){
   secondElement = document.getElementById("secondCalendar");
@@ -286,6 +318,17 @@ function clickBook(){
   var fDate = convertDateToFormat(fCalender.value);
   var sDate = convertDateToFormat(sCalender.value);
   var bookDate = fDate+":"+sDate;
+  $.ajax({
+    type: "POST",
+    url: "php/dbActions.php",
+    data: {validate: 'bookRoom',Order: Order,Date: bookDate, Room: choosenRoom},
+    cache: false,
+    success: function(data) {
+      var text = JSON.parse(data);
+      
+
+  }
+}); 
 
 
   
@@ -302,6 +345,7 @@ function convertDateToFormat(date){
 }
 
 function GFG_click(clicked) {
+  validBook = false;
   element = document.getElementById(clicked);
   if(numberRoom >0){
     for(i =0 ; i<numberRoom; i++){
@@ -311,6 +355,7 @@ function GFG_click(clicked) {
     element.name = "chooseClick"
     choosenRoom = element.id
     resetCalendar();
+    resetSecondCalendar();
     getDateBook();
   }
 } 
@@ -318,6 +363,7 @@ function GFG_click(clicked) {
   $('#inputSelectHotel').on('change', function(){
     var selected_value = getSelectionById("inputSelectHotel")
     resetCalendar();
+    validBook = false;
     if(selected_value ==  "Choose Hotel"){
       CreateRooms(0);
     }
@@ -335,7 +381,6 @@ function GFG_click(clicked) {
       cache: false,
       success: function(data) {
         var text = JSON.parse(data);
-
         CreateRooms(text);
     }
   }); 

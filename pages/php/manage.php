@@ -279,7 +279,10 @@ function navbar2Options(){
             <a href="pages/Logout.php" class="nav-link">Logout</a>
         </li>
         <li class="nav-item">
-            <a href="pages/Reservation.php" class="nav-link">Reservation</a>
+            <a href="pages/Reservation.php" class="nav-link">Book</a>
+        </li>
+        <li class="nav-item">
+            <a href="pages/Book.php" class="nav-link">My Book</a>
         </li>
         ');
         if($_SESSION['name'][2] == 1){
@@ -347,6 +350,65 @@ function facadeImage(){
         }
 
     }
+}
+
+function bookLoad(){
+
+    require_once 'dbActions.php';
+
+    $book = getBookUser();
+
+    if(count($book[0]) == 0){
+        echo('
+        <div class="justify-content-center input-group mb-3">
+        <h3>You have no reservations</h3>
+    </div>
+    <div class="justify-content-center input-group mb-3">
+        <a href="Reservation.php" class="nav-link">Click here to make one</a>
+    </div>
+        
+        ');
+    }
+    else{
+
+        echo "<script> window.onload = function() {
+            checkBookValidity();
+        }; </script>";
+    ;    
+
+        for($i = 0 ; $i < count($book[0]); $i++){
+            $date1 = explode(':',$book[2][$i])[0];
+            $date2 = explode(':',$book[2][$i])[1];
+            $name = $book[0][$i].'_'.$book[1][$i].'_'.$book[2][$i];
+            echo('
+        
+            <div class="justify-content-center input-group mb-3">
+            <div style="background-color: rgb(43, 43, 43);" class="container">
+                <div class="box">
+                    <div style="color:white;">
+                    Hotel:'.$book[0][$i].'</div>
+                    <div style="color:white;">
+                    ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀</div>
+                    <div style="color:white;">
+                    Room: '.$book[1][$i].'</div>
+                </div>
+                <div class="box">
+                    <div style="color:white;">
+                    From '.$date1.' To '.$date2.'</div>
+                </div>
+                <div class="box">
+                <button class = "CancelButton" name ='.$name.' onclick="CancelBook(this.name)" > Cancel Book </button>
+                </div>
+            </div>
+            </div>
+            
+            ');
+        }
+    }
+
+
+
+
 }
 
 ?>
